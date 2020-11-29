@@ -13,5 +13,41 @@
     "i386"
   ],
   "boot": "auto",
+  "options": {
+    "Mqtt:Server": "192.168.1.110",
+    "Mqtt:Login": "",
+    "Mqtt:Password": "",
+    "Lupusec:Url": "http://192.168.1.111",
+    "Lupusec:Login": "admin",
+    "Lupusec:Password": "secret",
+    "Mappings": [
+      {
+        "UniqueId": "RF:01924810",
+        "DeviceClass": "garage_door"
+      },
+      {
+        "UniqueId": "RF:01a11110",
+        "DeviceClass": "door"
+      }
+    ]
+  },
+  "schema": {
+    "Mqtt:Server": "str",
+    "Mqtt:Login": "str",
+    "Mqtt:Password": "str",
+    "Lupusec:Url": "str",
+    "Lupusec:Login": "str",
+    "Lupusec:Password": "str",
+    "Mappings": [
+      {
+        "UniqueId": "str",
+        "DeviceClass": "str"
+      },
+      {
+        "UniqueId": "str",
+        "DeviceClass": "str"
+      }
+    ]
+  },
   "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}"
 }
