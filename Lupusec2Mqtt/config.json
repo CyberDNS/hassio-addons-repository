@@ -50,5 +50,5 @@
       }
     ]
   },
-  "image": "cyberdns/lupusec2mqtt_hassaddon"
+  "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}"
 }
