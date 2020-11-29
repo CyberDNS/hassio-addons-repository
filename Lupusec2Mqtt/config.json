@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "Lupusec2Mqtt",
   "version": "1.0.1",
   "slug": "Lupusec2Mqtt",
@@ -30,7 +30,6 @@
         "DeviceClass": "door"
       }
     ]
-
   },
   "schema": {
     "Mqtt:Server": "str",
