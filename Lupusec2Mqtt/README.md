@@ -9,7 +9,7 @@ Make your Lupusec Alarm system available in Homeassistant.
 This addon makes it possible to forward the status of your Lupusec Alarm system to Mqtt and the use it in Homeassistant by the MQTT integration.
 
 ## License information
-Logo and Icon: ["Fox"](https://www.deviantart.com/samadarag/art/Fox-484262458) by [samadarag](https://www.deviantart.com/samadarag) is licensed under [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/?ref=ccsearch&atype=rich)
+Logo and Icon: ["Fox"](https://www.deviantart.com/samadarag/art/Fox-484262458) by [samadarag](https://www.deviantart.com/samadarag) is licensed under [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/?ref=ccsearch&atype=rich)  
 Lupusec: A trademark of LUPUS Electronics
 
 [aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
