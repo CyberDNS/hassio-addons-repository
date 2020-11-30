@@ -1,6 +1,6 @@
 {
   "name": "Lupusec2Mqtt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "slug": "Lupusec2Mqtt",
   "description": "Connect your Lupusec Alarm system to HomeAssistant by an MQTT integration",
   "startup": "application",
@@ -40,12 +40,8 @@
     "Lupusec:Password": "str",
     "Mappings": [
       {
-        "UniqueId": "str",
-        "DeviceClass": "str"
-      },
-      {
-        "UniqueId": "str",
-        "DeviceClass": "str"
+        "UniqueId": "str?",
+        "DeviceClass": "str?"
       }
     ]
   },
