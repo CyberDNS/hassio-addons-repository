@@ -1,6 +1,6 @@
 {
   "name": "Lupusec2Mqtt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "slug": "Lupusec2Mqtt",
   "description": "Connect your Lupusec Alarm system to HomeAssistant by an MQTT integration",
   "startup": "application",
@@ -19,17 +19,7 @@
     "Mqtt:Password": "",
     "Lupusec:Url": "http://192.168.1.111",
     "Lupusec:Login": "admin",
-    "Lupusec:Password": "secret",
-    "Mappings": [
-      {
-        "UniqueId": "RF:01924810",
-        "DeviceClass": "garage_door"
-      },
-      {
-        "UniqueId": "RF:01a11110",
-        "DeviceClass": "door"
-      }
-    ]
+    "Lupusec:Password": "secret"
   },
   "schema": {
     "Mqtt:Server": "str",
@@ -37,13 +27,7 @@
     "Mqtt:Password": "str",
     "Lupusec:Url": "str",
     "Lupusec:Login": "str",
-    "Lupusec:Password": "str",
-    "Mappings": [
-      {
-        "UniqueId": "str?",
-        "DeviceClass": "str?"
-      }
-    ]
+    "Lupusec:Password": "str"
   },
   "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}"
 }
