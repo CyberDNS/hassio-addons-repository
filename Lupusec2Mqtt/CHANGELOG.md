@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.3
+
+- Additional libraries installed in docker images for ARM support
+
 ## 1.0.2
 
 - Removed the option to override in the options (mappings). The overrides must now be done in the Homeassistant UI.
