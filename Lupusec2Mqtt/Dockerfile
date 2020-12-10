@@ -28,7 +28,7 @@ RUN if [ "$BUILD_ARCH" = "aarch64" ] ; then dotnet publish "Lupusec2Mqtt.csproj"
 FROM base AS final
 
 ENV LANG C.UTF-8
-RUN apk add --no-cache jq libstdc++ libintl icu
+RUN apk add --no-cache jq libstdc++ libintl icu libc6-compat libcurl libgcc krb5-libs icu-libs lttng-ust-dev libssl1.1 libunwind libuuid zlib
 
 WORKDIR /app
 COPY --from=publish /app/publish .
