@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.4
+
+- Switched to microsoft dotnet core base image
+
 ## 1.0.3
 
 - Additional libraries installed in docker images for ARM support
