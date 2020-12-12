@@ -2,17 +2,10 @@ name: Docker
 
 on:
   workflow_dispatch:
-    # Publish `master` as Docker `latest` image.
-    branches:
-      - build
-
-    # Publish `v1.2.3` tags as releases.
-    tags:
-      - v*
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: lupuse2mqtt_hassaddon
+  IMAGE_NAME: lupusec2mqtt_hassaddon
 
 jobs:
   # Push image to GitHub Packages.
@@ -22,8 +15,6 @@ jobs:
     strategy:
       matrix:
         arch: ['amd64', 'armhf', 'armv7', 'aarch64']
-    if: github.event_name == 'push'
-
     steps:
       - uses: actions/checkout@v2
 
