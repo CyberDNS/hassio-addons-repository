@@ -19,14 +19,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME_${{ matrix.arch }}
+        run: docker build . --file Dockerfile --tag ${{ IMAGE_NAME }}_${{ matrix.arch }}
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
 
       - name: Push image
         run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME_${{ matrix.arch }}
+          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/${{ IMAGE_NAME }}_${{ matrix.arch }}
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
