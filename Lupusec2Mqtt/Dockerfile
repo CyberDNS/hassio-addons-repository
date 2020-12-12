@@ -1,7 +1,6 @@
 ARG BASE_TAG
 FROM mcr.microsoft.com/dotnet/core/aspnet:$BASE_TAG AS base
 WORKDIR /app
-RUN echo $BASE_TAG
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 RUN apt-get update
