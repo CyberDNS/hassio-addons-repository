@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build image
-        run: docker build . --file Lupusec2Mqtt/Dockerfile --tag ${{ env.IMAGE_NAME }}_${{ matrix.arch }} --build-arg BASE_TAG={{ matrix.base_tag }}
+        run: docker build . --file Lupusec2Mqtt/Dockerfile --tag ${{ env.IMAGE_NAME }}_${{ matrix.arch }} --build-arg BASE_TAG=${{ matrix.base_tag }}
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
