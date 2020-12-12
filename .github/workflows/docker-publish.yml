@@ -34,12 +34,15 @@ jobs:
       - name: Build image
         run: docker build . --file Lupusec2Mqtt/Dockerfile --tag ${{ env.IMAGE_NAME }}_${{ matrix.arch }} --build-arg BASE_TAG=${{ matrix.base_tag }}
 
-      - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push image
         run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/${{ env.IMAGE_NAME }}_${{ matrix.arch }}
+          IMAGE_ID=cyberdns/${{ env.IMAGE_NAME }}_${{ matrix.arch }}
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
