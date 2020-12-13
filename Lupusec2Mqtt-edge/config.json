@@ -29,7 +29,7 @@
     "Lupusec:Url": "str",
     "Lupusec:Login": "str",
     "Lupusec:Password": "str",
-    "Serilog:MinimumLevel:Default": "list("Verbose"|"Debug"|"Information"|"Warning"|"Error"|"Fatal")?",
+    "Serilog:MinimumLevel:Default": "list('Verbose'|'Debug'|'Information'|'Warning'|'Error'|'Fatal')?",
     "MotionSensor:DetectionDuration": "int(1,)?"
   },
   "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}"
