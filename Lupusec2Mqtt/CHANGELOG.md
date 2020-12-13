@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0
+
+- Motion sensors report now state
+- Logging is now configurable
+
 ## 1.0.4
 
 - Switched to microsoft dotnet core base image
