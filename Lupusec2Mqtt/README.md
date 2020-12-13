@@ -28,6 +28,14 @@ Make your Lupusec XT2 (and compatible) Alarm System available on an MQTT Broker 
 3. Install the Lupusec2Mqtt plugin
 4. Configure
 
+## Configuration
+
+### Motion sensors
+To make your motion sensors work, you need to configure your sensors in the Lupusec Web UI, to sent an Homeautomation Event 16 when a movement is detected. Lupusec2Mqtt will then detect this event in the logs and will report a movement on that sensor for the configured DetectionDuration time in seconds.
+
+### Logging
+You can configure the default logging level to different levels: Verbose, Debug, Information, Warning, Error, Fatal 
+
 ## License information
 Logo and Icon: ["Fox"](https://www.deviantart.com/samadarag/art/Fox-484262458) by [samadarag](https://www.deviantart.com/samadarag) is licensed under [CC BY-NC-ND 3.0](https://creativecommons.org/licenses/by-nc-nd/3.0/?ref=ccsearch&atype=rich)  
 Lupusec: A trademark of LUPUS Electronics
