@@ -1,6 +1,6 @@
 {
   "name": "Lupusec2Mqtt",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "slug": "Lupusec2Mqtt",
   "description": "Connect your Lupusec Alarm system to HomeAssistant by an MQTT integration",
   "startup": "application",
@@ -18,7 +18,9 @@
     "Mqtt:Password": "",
     "Lupusec:Url": "http://192.168.1.111",
     "Lupusec:Login": "admin",
-    "Lupusec:Password": "secret"
+    "Lupusec:Password": "secret",
+    "Serilog:MinimumLevel:Default": "Information",
+    "MotionSensor:DetectionDuration": 60
   },
   "schema": {
     "Mqtt:Server": "str",
@@ -26,7 +28,9 @@
     "Mqtt:Password": "str",
     "Lupusec:Url": "str",
     "Lupusec:Login": "str",
-    "Lupusec:Password": "str"
+    "Lupusec:Password": "str",
+    "Serilog:MinimumLevel:Default": "str?",
+    "MotionSensor:DetectionDuration": "int(1,)"
   },
   "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}"
 }
