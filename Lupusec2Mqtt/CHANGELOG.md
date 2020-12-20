@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0
+
+- Power switch added with discovery, state and set
+- Power switch consumption entity
+
 ## 1.1.0
 
 - Motion sensors report now state
