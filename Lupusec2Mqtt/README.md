@@ -9,6 +9,7 @@ Make your Lupusec Alarm system available in Homeassistant.
 Make your Lupusec XT2 (and compatible) Alarm System available on an MQTT Broker (compatible with Home Assistant).
 
 ## Tested with
+- XT1 Plus
 - XT2
 - XT2 Plus
 
