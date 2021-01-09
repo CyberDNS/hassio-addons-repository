@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0
+
+- Light added with possiblity to turn on and off (No hue, color, dim implemented yet)
+
 ## 1.2.0
 
 - Power switch added with discovery, state and set
