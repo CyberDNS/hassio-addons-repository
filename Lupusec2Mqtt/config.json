@@ -14,6 +14,7 @@
   "boot": "auto",
   "options": {
     "Mqtt:Server": "192.168.1.110",
+    "Mqtt:Port": 1883,
     "Mqtt:Login": "",
     "Mqtt:Password": "",
     "Lupusec:Url": "http://192.168.1.111",
@@ -24,6 +25,7 @@
   },
   "schema": {
     "Mqtt:Server": "str",
+    "Mqtt:Port": "int(1,)",
     "Mqtt:Login": "str",
     "Mqtt:Password": "str",
     "Lupusec:Url": "str",
