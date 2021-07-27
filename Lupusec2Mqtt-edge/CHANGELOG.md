@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1
+
+- Added Nuki door lock (Credits: maionaise)
+
 ## 1.3.0
 
 - Light added with possiblity to turn on and off (No hue, color, dim implemented yet)
