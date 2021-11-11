@@ -8,6 +8,7 @@ RUN apt-get install -y git
 
 WORKDIR "/src"
 RUN git clone https://github.com/CyberDNS/Lupusec2Mqtt/
+RUN git checkout dev
 WORKDIR "/src/Lupusec2Mqtt/src"
 RUN ls
 RUN dotnet restore "Lupusec2Mqtt/Lupusec2Mqtt.csproj"
