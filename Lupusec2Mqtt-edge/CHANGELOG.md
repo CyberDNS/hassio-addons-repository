@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+
+- Added Temperature/Humidity sensor (Credits: scaiandre)
+
 ## 1.4.1
 
 - Added Nuki door lock (Credits: maionaise)
