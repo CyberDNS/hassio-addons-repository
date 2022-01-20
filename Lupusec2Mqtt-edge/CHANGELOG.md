@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.6.0
+
+- Added XT2 opener contact (Credits: ChrisKeck)
+- Added XT2 wall switch (Credits: ChrisKeck)
+- Logging ignored devices (Credits: ChrisKeck)
+- Refactoring / Bugfixes / Robustness (Credits: ChrisKeck)
+
 ## 1.5.0
 
 - Added Temperature/Humidity sensor (Credits: scaiandre)
