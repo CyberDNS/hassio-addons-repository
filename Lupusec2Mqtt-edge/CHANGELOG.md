@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0
+
+ - Upgrade to .NET 6
+ - Added alarm panel vacation mode (mapped to home 3)
+ - Some changes in logging
+
 ## 1.6.0
 
 - Added XT2 opener contact (Credits: ChrisKeck)
