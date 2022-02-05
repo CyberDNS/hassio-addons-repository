@@ -1,8 +1,7 @@
-ARG BASE_TAG
-FROM mcr.microsoft.com/dotnet/core/aspnet:$BASE_TAG AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 RUN apt-get update
 RUN apt-get install -y git
 
