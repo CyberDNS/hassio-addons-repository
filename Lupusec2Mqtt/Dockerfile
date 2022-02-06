@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+ARG BASE_TAG
+FROM mcr.microsoft.com/dotnet/aspnet:$BASE_TAG AS base
 WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build

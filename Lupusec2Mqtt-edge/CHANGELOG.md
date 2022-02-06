@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+
+ - Using the correct .NET 6 docker images for different platforms
+
 ## 2.0.0
 
  - Upgrade to .NET 6
