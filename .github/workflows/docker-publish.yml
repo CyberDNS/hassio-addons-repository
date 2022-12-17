@@ -1,4 +1,4 @@
-name: Docker
+name: 'Publish Lupusec2Mqtt'
 
 on:
   workflow_dispatch:
