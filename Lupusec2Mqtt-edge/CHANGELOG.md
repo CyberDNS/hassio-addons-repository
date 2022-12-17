@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0
+
+- Cover is now controllable in home assistant
+
 ## 2.1.0
 
 - Added cover that shows current state (opened, closed and position)
