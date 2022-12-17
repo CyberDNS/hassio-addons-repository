@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.0
+
+- Added cover that shows current state (opened, closed and position)
+
 ## 2.0.1
 
  - Using the correct .NET 6 docker images for different platforms
