@@ -10,7 +10,7 @@ on:
       dockerfile:
         description: 'Location of the dockerfile (for prod use Lupusec2Mqtt/Dockerfile)'     
         required: true
-        default: 'Lupusec2Mqtt-Edge/Dockerfile'
+        default: 'Lupusec2Mqtt-edge/Dockerfile'
 
 env:
   # TODO: Change variable to your image's name.
