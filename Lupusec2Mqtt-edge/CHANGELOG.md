@@ -1,4 +1,7 @@
 # Changelog
+## 3.0.0
+
+- Complete rewrite of device model and poll loop - could contain breaking changes!
 
 ## 2.2.0
 
