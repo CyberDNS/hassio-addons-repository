@@ -7,7 +7,7 @@ RUN apt-get update
 RUN apt-get install -y git
 
 WORKDIR "/src"
-RUN git clone -b dev --single-branch https://github.com/CyberDNS/Lupusec2Mqtt/
+RUN git clone -b master --single-branch https://github.com/CyberDNS/Lupusec2Mqtt/
 WORKDIR "/src/Lupusec2Mqtt/src"
 RUN ls
 RUN dotnet restore "Lupusec2Mqtt/Lupusec2Mqtt.csproj"
