@@ -3,7 +3,7 @@
 
 - feat: Complete rewrite of device model and poll loop - could contain breaking changes!
 - feat: Changed logging messages for easier debugging of problems
-- fix: ll motion detectors were showing up in HA as being triggered even if only one was triggered in reality
+- fix: All motion detectors were showing up in HA as being triggered even if only one was triggered in reality
 
 ## 2.2.0
 
