@@ -1,11 +1,9 @@
 # Changelog
-## 3.0.1
+## 3.0.2 (Pre-release: final version will be published under 3.1.0)
 
-- fix: all motion detectors were showing up in HA as being triggered even if only one was triggered in reality
-
-## 3.0.0
-
-- Complete rewrite of device model and poll loop - could contain breaking changes!
+- feat: Complete rewrite of device model and poll loop - could contain breaking changes!
+- feat: Changed logging messages for easier debugging of problems
+- fix: ll motion detectors were showing up in HA as being triggered even if only one was triggered in reality
 
 ## 2.2.0
 
