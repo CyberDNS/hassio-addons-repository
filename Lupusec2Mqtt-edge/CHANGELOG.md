@@ -1,5 +1,5 @@
 # Changelog
-## 3.0.3 (Pre-release: final version will be published under 3.1.0)
+## 3.0.4 (Pre-release: final version will be published under 3.1.0)
 
 - feat: Complete rewrite of device model and poll loop - could contain breaking changes!
 - feat: MQTT library chenged for better reliability
