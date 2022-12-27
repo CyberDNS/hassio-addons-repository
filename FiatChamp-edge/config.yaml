@@ -1,11 +1,11 @@
 name: "FiatChamp"
-url: "https://github.com/wubbl0rz/FiatChamp"
+url: "https://github.com/CyberDNS/FiatChamp"
 description: "Connect your FIAT (uconnect) car to Home Assistant. 🚗"
 services:
     - "mqtt:want"
 version: "3.0.7"
 homeassistant_api: true
-image: "cyberdns/fiatchamp_hassaddon_{arch}"
+image: "ghcr.io/CyberDNS/image-{arch}-fiat-champ"
 slug: "fiat_champ"
 init: false
 discovery: 
@@ -44,5 +44,3 @@ schema:
 arch:
   - amd64
   - armv7
-  - aarch64
-  - armhf
