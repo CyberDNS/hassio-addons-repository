@@ -1,24 +1,15 @@
-ARG BASE_TAG
-FROM mcr.microsoft.com/dotnet/aspnet:$BASE_TAG AS base
-WORKDIR /app
+# BUILD IMAGE
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
-RUN apt-get update
-RUN apt-get install -y git
+RUN apk add icu-libs
+RUN apk add icu
 
-WORKDIR "/src"
-RUN git clone -b master --single-branch https://github.com/CyberDNS/FiatChamp/
-WORKDIR "/src/FiatChamp/FiatChampAddon/FiatClient"
-RUN ls
-RUN dotnet restore "./FiatChamp.csproj"
-COPY . .
-WORKDIR "/src/FiatChamp/FiatChampAddon/FiatClient"
-RUN dotnet build "FiatChamp.csproj" -c Release -o /app/build
+COPY run.sh /run.sh
+RUN chmod a+x /run.sh
 
-FROM build AS publish
-RUN dotnet publish "FiatChamp.csproj" -c Release -o /app/publish --no-restore
+COPY FiatClient/build/ /build/.
 
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "FiatChamp.dll"]
+LABEL org.opencontainers.image.source https://github.com/CyberDNS/FiatChamp
+
+CMD [ "/run.sh" ]
