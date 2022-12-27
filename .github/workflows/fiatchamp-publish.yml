@@ -39,5 +39,4 @@ jobs:
       with:
         args: |
           --${{ matrix.arch }} \
-          --repository https://github.com/CyberDNS/FiatChamp
-          --target FiatChampAddon
+          --target FiatChamp-edge
