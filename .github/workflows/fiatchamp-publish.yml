@@ -30,6 +30,7 @@ jobs:
       run: |
         cd FiatChampAddon/FiatClient
         dotnet publish -r ${{ matrix.rid }} --configuration Release --self-contained -o build/
+        cp FiatChamp-edge/config.yaml FiatChampAddon/
     - name: docker_login
       uses: docker/login-action@v2.0.0
       with:
