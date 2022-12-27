@@ -18,6 +18,8 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v3
+      with:
+        repository: CyberDNS/FiatChamp
     - name: setup
       uses: actions/setup-dotnet@v3
       with:
