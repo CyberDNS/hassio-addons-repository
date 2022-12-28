@@ -1,8 +1,9 @@
 # Changelog
-## 3.0.4 (Pre-release: final version will be published under 3.1.0)
+## 3.0.5 (Pre-release: final version will be published under 3.1.0)
 
 - feat: Complete rewrite of device model and poll loop - could contain breaking changes!
 - feat: MQTT library chenged for better reliability
+- feat: Cover/Shutters added
 - feat: Energy sensor added for power switches
 - feat: Changed logging messages for easier debugging of problems
 - fix: All motion detectors were showing up in HA as being triggered even if only one was triggered in reality
