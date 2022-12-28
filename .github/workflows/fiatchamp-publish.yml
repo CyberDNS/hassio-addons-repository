@@ -45,4 +45,4 @@ jobs:
       with:
         args: |
           --${{ matrix.arch }} \
-          --target $GITHUB_WORKSPACE/code/FiatChampAddon/
+          --target code/FiatChampAddon/
