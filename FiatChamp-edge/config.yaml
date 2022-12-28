@@ -5,7 +5,7 @@ services:
     - "mqtt:want"
 version: "3.0.7"
 homeassistant_api: true
-image: "ghcr.io/CyberDNS/image-{arch}-fiat-champ"
+image: "ghcr.io/cyberdns/image-{arch}-fiat-champ"
 slug: "fiat_champ"
 init: false
 discovery: 
