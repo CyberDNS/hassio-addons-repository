@@ -31,9 +31,9 @@ jobs:
         dotnet-version: 7.0.x
     - name: build_release
       run: |
-        cd code/FiatChampAddon/FiatClient
+        cd ${{ GITHUB_WORKSPACE }}/code/FiatChampAddon/FiatClient
         dotnet publish -r ${{ matrix.rid }} --configuration Release --self-contained -o build/
-        cp addons/FiatChamp-edge/config.yaml FiatChampAddon/
+        cp ${{ GITHUB_WORKSPACE }}/addons/FiatChamp-edge/config.yaml FiatChampAddon/
     - name: docker_login
       uses: docker/login-action@v2.0.0
       with:
@@ -45,4 +45,4 @@ jobs:
       with:
         args: |
           --${{ matrix.arch }} \
-          --target addons/FiatChamp-edge
+          --target ${{ GITHUB_WORKSPACE }}/addons/FiatChamp-edge
