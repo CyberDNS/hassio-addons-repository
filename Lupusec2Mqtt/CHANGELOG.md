@@ -1,5 +1,13 @@
 # Changelog
+## 3.1.0
 
+- feat: Complete rewrite of device model and poll loop - could contain breaking changes!
+- feat: MQTT library chenged for better reliability
+- feat: Cover/Shutters added
+- feat: Energy sensor added for power switches
+- feat: Changed logging messages for easier debugging of problems
+- fix: All motion detectors were showing up in HA as being triggered even if only one was triggered in reality
+- 
 ## 2.0.1
 
  - Using the correct .NET 6 docker images for different platforms
