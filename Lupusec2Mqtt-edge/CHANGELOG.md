@@ -1,4 +1,8 @@
 # Changelog
+## 3.1.1
+
+- feat: Changed position of response logging
+
 ## 3.1.0
 
 - feat: Complete rewrite of device model and poll loop - could contain breaking changes!
