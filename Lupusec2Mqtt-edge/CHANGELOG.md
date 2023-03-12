@@ -1,4 +1,8 @@
 # Changelog
+## 3.1.2
+
+- fix: some characters sent back from Lupusec could crash on decoding 
+
 ## 3.1.1
 
 - feat: Changed position of response logging
