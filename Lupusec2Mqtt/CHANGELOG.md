@@ -1,4 +1,7 @@
 # Changelog
+## 3.1.3
+- fix: after a home assistant restart entities were not available anymore
+
 ## 3.1.2
 
 - fix: some characters sent back from Lupusec could crash on decoding 
