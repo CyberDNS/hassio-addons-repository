@@ -1,4 +1,7 @@
 # Changelog
+## 3.1.4
+- fix: temperature sensors below 0 reported back only 0 and not the correct negative temperature
+
 ## 3.1.3
 - fix: after a home assistant restart entities were not available anymore
 
