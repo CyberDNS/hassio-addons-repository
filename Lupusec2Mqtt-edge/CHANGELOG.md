@@ -1,4 +1,8 @@
 # Changelog
+## 3.2.0
+- feat: Vibration detector added
+- feat: Smoke detector state publishing added
+
 ## 3.1.4
 - fix: temperature sensors below 0 reported back only 0 and not the correct negative temperature
 
