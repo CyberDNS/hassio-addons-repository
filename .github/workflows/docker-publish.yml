@@ -27,13 +27,13 @@ jobs:
       matrix:
         include:
           - arch: 'amd64'
-            base_tag: '8.0-bullseye-slim'
+            base_tag: '8.0-bockworm-slim'
           - arch: 'armhf'
-            base_tag: '8.0-bullseye-slim-arm32v7'
+            base_tag: '8.0-bockworm-slim-arm32v7'
           - arch: 'armv7'
-            base_tag: '8.0-bullseye-slim-arm32v7'
+            base_tag: '8.0-bockworm-slim-arm32v7'
           - arch: 'aarch64'
-            base_tag: '8.0-bullseye-slim-arm64v8'
+            base_tag: '8.0-bockworm-slim-arm64v8'
     steps:
       - uses: actions/checkout@v2
 
