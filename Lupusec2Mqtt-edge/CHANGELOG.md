@@ -1,4 +1,7 @@
 # Changelog
+## 3.3.0
+- feat: Poll frequency is now configurable in seconds
+
 ## 3.2.0
 - feat: Vibration detector added
 - feat: Smoke detector state publishing added
