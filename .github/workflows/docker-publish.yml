@@ -27,13 +27,13 @@ jobs:
       matrix:
         include:
           - arch: 'amd64'
-            base_tag: '8.0-bookworm-slim'
+            base_tag: '8.0-jammy'
           - arch: 'armhf'
-            base_tag: '8.0-bookworm-slim-arm32v7'
+            base_tag: '8.0-jammy-arm32v7'
           - arch: 'armv7'
-            base_tag: '8.0-bookworm-slim-arm32v7'
+            base_tag: '8.0-jammy-arm32v7'
           - arch: 'aarch64'
-            base_tag: '8.0-bookworm-slim-arm64v8'
+            base_tag: '8.0-jammy-arm64v8'
     steps:
       - uses: actions/checkout@v2
 

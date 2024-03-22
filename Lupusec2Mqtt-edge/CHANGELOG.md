@@ -1,4 +1,7 @@
 # Changelog
+## 3.3.1
+- fix: Changed to Ubuntu base image to resolve TLS handshake problems
+
 ## 3.3.0
 - feat: Poll frequency is now configurable in seconds
 
