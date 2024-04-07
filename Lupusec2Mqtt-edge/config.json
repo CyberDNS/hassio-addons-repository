@@ -1,6 +1,6 @@
 {
   "name": "Lupusec2Mqtt Edge",
-  "version": "3.3.1",
+  "version": "3.3.2",
   "slug": "Lupusec2Mqtt-edge",
   "description": "Connect your Lupusec Alarm system to HomeAssistant by an MQTT integration",
   "startup": "application",

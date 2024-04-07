@@ -1,4 +1,7 @@
 # Changelog
+## 3.3.2
+- fix: Added DOORBELL status to vibration and smoke detector
+
 ## 3.3.1
 - fix: Changed to Ubuntu base image to resolve TLS handshake problems
 
