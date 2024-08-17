@@ -1,4 +1,8 @@
 # Changelog
+
+## 3.3.3
+- fix: Handle expired tokens and retry requests
+
 ## 3.3.2
 - fix: Added DOORBELL status to vibration and smoke detector
 
