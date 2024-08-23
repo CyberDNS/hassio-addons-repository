@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.3.4
+- fix: added retry get token when response is text/html (login screen)
+
 ## 3.3.3
 - fix: Handle expired tokens and retry requests
 
