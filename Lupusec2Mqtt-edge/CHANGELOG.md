@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.3.5
+
+- fix: incorrect injection of logger into LupusecTokenHandler
+
 ## 3.3.4
 - fix: added retry get token when response is text/html (login screen)
 
