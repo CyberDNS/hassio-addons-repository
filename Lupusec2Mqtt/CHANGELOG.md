@@ -1,4 +1,28 @@
 # Changelog
+
+## 3.3.5
+
+- fix: incorrect injection of logger into LupusecTokenHandler
+
+## 3.3.4
+- fix: added retry get token when response is text/html (login screen)
+
+## 3.3.3
+- fix: Handle expired tokens and retry requests
+
+## 3.3.2
+- fix: Added DOORBELL status to vibration and smoke detector
+
+## 3.3.1
+- fix: Changed to Ubuntu base image to resolve TLS handshake problems
+
+## 3.3.0
+- feat: Poll frequency is now configurable in seconds
+
+## 3.2.0
+- feat: Vibration detector added
+- feat: Smoke detector state publishing added
+
 ## 3.1.4
 - fix: temperature sensors below 0 reported back only 0 and not the correct negative temperature
 
