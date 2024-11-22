@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.4.0
+
+- feat: added water sensors (Kudos [@trashar](https://github.com/trashar))
+- feat: upgraded nuget packages with vulnerabilities
+
 ## 3.3.5
 
 - fix: incorrect injection of logger into LupusecTokenHandler
