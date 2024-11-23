@@ -1,0 +1,43 @@
+{
+  "name": "Lupusec2Mqtt Development",
+  "version": "3.4.0",
+  "slug": "Lupusec2Mqtt-dev",
+  "description": "Connect your Lupusec Alarm system to HomeAssistant by an MQTT integration",
+  "startup": "application",
+  "init": false,
+  "arch": [
+    "aarch64",
+    "amd64",
+    "armhf",
+    "armv7"
+  ],
+  "boot": "auto",
+  "options": {
+    "Mqtt:Server": "192.168.1.110",
+    "Mqtt:Port": 1883,
+    "Mqtt:Login": "",
+    "Mqtt:Password": "",
+    "Lupusec:Url": "http://192.168.1.111",
+    "Lupusec:Login": "admin",
+    "Lupusec:Password": "secret",
+    "Serilog:MinimumLevel:Default": "Information",
+    "MotionSensor:DetectionDuration": 60,
+    "PollFrequencyInSeconds": 2
+  },
+  "schema": {
+    "Mqtt:Server": "str",
+    "Mqtt:Port": "int(1,)",
+    "Mqtt:Login": "str",
+    "Mqtt:Password": "str",
+    "Lupusec:Url": "str",
+    "Lupusec:Login": "str",
+    "Lupusec:Password": "str",
+    "Serilog:MinimumLevel:Default": "str?",
+    "MotionSensor:DetectionDuration": "int(1,)",
+    "PollFrequencyInSeconds": "int(1,)"
+  },
+  "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}",
+  "ports": {
+    "5000/tcp": 5000
+  }
+}
