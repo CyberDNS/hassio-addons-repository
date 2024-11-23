@@ -38,6 +38,6 @@
   },
   "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}",
   "ingress": true,
-  "ingress_port": 80,
+  "ingress_port": 5000,
   "panel_title": "Lupusec2Mqtt"
 }
