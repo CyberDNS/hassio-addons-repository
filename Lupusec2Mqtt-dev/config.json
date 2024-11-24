@@ -21,6 +21,7 @@
     "Lupusec:Login": "admin",
     "Lupusec:Password": "secret",
     "Serilog:MinimumLevel:Default": "Information",
+    "Serilog:MinimumLevel:Override:Microsoft": "Information",
     "MotionSensor:DetectionDuration": 60,
     "PollFrequencyInSeconds": 2
   },
@@ -33,6 +34,7 @@
     "Lupusec:Login": "str",
     "Lupusec:Password": "str",
     "Serilog:MinimumLevel:Default": "str?",
+    "Serilog:MinimumLevel:Override:Microsoft": "str?",
     "MotionSensor:DetectionDuration": "int(1,)",
     "PollFrequencyInSeconds": "int(1,)"
   },
