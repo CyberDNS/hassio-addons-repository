@@ -36,5 +36,7 @@
     "MotionSensor:DetectionDuration": "int(1,)",
     "PollFrequencyInSeconds": "int(1,)"
   },
-  "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}"
+  "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}",
+  "ingress": true,
+  "ingress_port": 8080
 }
