@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.4.2
+
+- feat: added diagnostic data download via Open Web UI button
+
 ## 3.4.0
 
 - feat: added water sensors (Kudos [@trashar](https://github.com/trashar))
