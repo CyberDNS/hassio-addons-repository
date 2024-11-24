@@ -39,7 +39,6 @@
     "PollFrequencyInSeconds": "int(1,)"
   },
   "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}",
-  "ports": {
-    "5000/tcp": 5000
-  }
+  "ingress": true,
+  "ingress_port": 8080
 }
