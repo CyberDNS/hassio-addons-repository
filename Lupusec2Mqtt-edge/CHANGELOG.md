@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.0
+
+- feat: added thermostates (Kudos [@trashar](https://github.com/trashar))
+
 ## 3.4.2
 
 - feat: added diagnostic data download via Open Web UI button

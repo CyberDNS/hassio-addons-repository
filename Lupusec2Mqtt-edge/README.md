@@ -27,6 +27,7 @@ Make your Lupusec XT2 (and compatible) Alarm System available on an MQTT Broker 
 - Lock (config, state, set)
 - Temperature/Humidity sensor (config, state)
 - Cover (config, state, position, set, set position)
+- Thermostat (config, state, set mode (off, manual mode (heat), auto), set temperature)
 
 ## Getting started
 
