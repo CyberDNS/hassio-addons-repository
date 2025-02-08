@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.5.0
+
+- feat: added thermostates (Kudos [@trashar](https://github.com/trashar))
+
+## 3.4.2
+
+- feat: added diagnostic data download via Open Web UI button
+
+## 3.4.0
+
+- feat: added water sensors (Kudos [@trashar](https://github.com/trashar))
+- feat: upgraded nuget packages with vulnerabilities
+
 ## 3.3.5
 
 - fix: incorrect injection of logger into LupusecTokenHandler
@@ -36,7 +49,7 @@
 ## 3.1.1
 
 - feat: Changed position of response logging
-- 
+
 ## 3.1.0
 
 - feat: Complete rewrite of device model and poll loop - could contain breaking changes!
@@ -45,7 +58,15 @@
 - feat: Energy sensor added for power switches
 - feat: Changed logging messages for easier debugging of problems
 - fix: All motion detectors were showing up in HA as being triggered even if only one was triggered in reality
-- 
+
+## 2.2.0
+
+- Cover is now controllable in home assistant
+
+## 2.1.0
+
+- Added cover that shows current state (opened, closed and position)
+
 ## 2.0.1
 
  - Using the correct .NET 6 docker images for different platforms
