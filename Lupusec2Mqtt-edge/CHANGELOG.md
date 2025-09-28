@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.0
+
+- feat: device "Lupusec" is now wrapping the entities. If you are migrating from a previous version, delete the discovery config from MQTT (e.g. using MQTT Explorer or another tool of your choice) and restart the add-on.
+
 ## 3.5.0
 
 - feat: added thermostates (Kudos [@trashar](https://github.com/trashar))
