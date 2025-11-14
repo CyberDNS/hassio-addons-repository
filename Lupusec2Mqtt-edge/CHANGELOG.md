@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.1.0
+
+- fix: smoke detector state handling fixed
+
 ## 4.0.0
 
 - feat: device "Lupusec" is now wrapping the entities. If you are migrating from a previous version, delete the discovery config from MQTT (e.g. using MQTT Explorer or another tool of your choice) and restart the add-on.
