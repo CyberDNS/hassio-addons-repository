@@ -1,6 +1,6 @@
 {
   "name": "Energy Assistant (dev)",
-  "version": "0.0.1",
+  "version": "0.1.0-dev",
   "slug": "energy-assistant-dev",
   "description": "Open-source, vendor-neutral energy management platform for homeowners (dev channel — nightly builds from main branch)",
   "url": "https://github.com/CyberDNS/energy-assistant",
