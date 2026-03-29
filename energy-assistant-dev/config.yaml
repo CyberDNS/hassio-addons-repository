@@ -12,6 +12,8 @@ boot: auto
 map:
   - type: addon_config
     read_only: false
+  - type: data
+    read_only: false
 ingress: true
 ingress_port: 8088
 options: {}
