@@ -1,0 +1,22 @@
+{
+  "name": "Energy Assistant (dev)",
+  "version": "0.0.1",
+  "slug": "energy-assistant-dev",
+  "description": "Open-source, vendor-neutral energy management platform for homeowners (dev channel — nightly builds from main branch)",
+  "url": "https://github.com/CyberDNS/energy-assistant",
+  "startup": "application",
+  "init": false,
+  "arch": [
+    "aarch64",
+    "amd64"
+  ],
+  "boot": "auto",
+  "map": [
+    "config:rw",
+    "data:rw"
+  ],
+  "ingress": true,
+  "ingress_port": 8088,
+  "options": {},
+  "schema": {}
+}
