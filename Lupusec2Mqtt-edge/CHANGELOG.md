@@ -1,5 +1,14 @@
 # Changelog
 
+## 4.1.1 (2026-08-09)
+
+## What's Changed
+* fix(lupusec): retry request when token re-authentication itself hits a 401 by @CyberDNS in https://github.com/CyberDNS/Lupusec2Mqtt/pull/106
+
+**Full Changelog**: https://github.com/CyberDNS/Lupusec2Mqtt/compare/v2.0.0...v4.1.1
+
+
+
 ## 4.1.0
 
 - fix: smoke detector state handling fixed
