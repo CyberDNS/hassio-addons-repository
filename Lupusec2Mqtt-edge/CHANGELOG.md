@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.1.2 (2026-08-09)
+
+## What's Changed
+* Add device wrapping for switches, lights, and switch sensors by @CyberDNS with @Copilot in https://github.com/CyberDNS/Lupusec2Mqtt/pull/101
+_If you are migrating from a previous version, delete the discovery config from MQTT (e.g. using MQTT Explorer or another tool of your choice) and restart the add-on._
+
+**Full Changelog**: https://github.com/CyberDNS/Lupusec2Mqtt/compare/v4.1.1...v4.1.2
+
+
+
 ## 4.1.1 (2026-08-09)
 
 ## What's Changed
