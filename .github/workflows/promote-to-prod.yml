@@ -1,0 +1,218 @@
+# Promote an already-published "edge" version to the prod channel.
+#
+# This does NOT rebuild anything — prod runs the exact same image edge
+# users already validated. It:
+#   1. reuses the version + changelog entry already present in
+#      <addon>-edge/CHANGELOG.md,
+#   2. copies them into <addon>/ (the prod folder), creating it from the
+#      edge template on first promotion,
+#   3. moves the mutable :latest tag in GHCR to point at that same image
+#      digest (via `docker buildx imagetools create`, no rebuild).
+#
+# Run manually from the Actions tab once a version has spent enough time on
+# edge to be considered stable.
+#
+# Required secret:
+#   GHCR_PROMOTE_PAT — classic PAT with `write:packages` (and `read:packages`)
+#                      scope, owned by an account with push access to the
+#                      ghcr.io/cyberdns/lupusec2mqtt and
+#                      ghcr.io/cyberdns/energy-assistant packages.
+
+name: Promote to prod
+
+on:
+  workflow_dispatch:
+    inputs:
+      addon:
+        description: "Add-on to promote"
+        required: true
+        type: choice
+        options:
+          - Lupusec2Mqtt
+          - energy-assistant
+      version:
+        description: "Version to promote (must already exist on the edge channel, e.g. 1.3.1)"
+        required: true
+
+jobs:
+  promote:
+    name: Promote ${{ inputs.addon }} ${{ inputs.version }} to prod
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compute metadata
+        id: meta
+        env:
+          ADDON: ${{ inputs.addon }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          EDGE_FOLDER="${ADDON}-edge"
+          PROD_FOLDER="${ADDON}"
+
+          if [[ "$ADDON" == "Lupusec2Mqtt" ]]; then
+            CONFIG_FILE="config.json"
+            IMAGE="ghcr.io/cyberdns/lupusec2mqtt"
+          else
+            CONFIG_FILE="config.yaml"
+            IMAGE="ghcr.io/cyberdns/energy-assistant"
+          fi
+
+          echo "edge_folder=${EDGE_FOLDER}"   >> "$GITHUB_OUTPUT"
+          echo "prod_folder=${PROD_FOLDER}"   >> "$GITHUB_OUTPUT"
+          echo "config_file=${CONFIG_FILE}"   >> "$GITHUB_OUTPUT"
+          echo "image=${IMAGE}"               >> "$GITHUB_OUTPUT"
+
+      - name: Verify version exists on edge
+        id: entry
+        env:
+          EDGE_FOLDER: ${{ steps.meta.outputs.edge_folder }}
+          CONFIG_FILE: ${{ steps.meta.outputs.config_file }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          EDGE_CONFIG="${EDGE_FOLDER}/${CONFIG_FILE}"
+          EDGE_CHANGELOG="${EDGE_FOLDER}/CHANGELOG.md"
+
+          if [[ ! -f "$EDGE_CONFIG" ]]; then
+            echo "::error::${EDGE_CONFIG} does not exist — nothing has ever been released to edge for this add-on."
+            exit 1
+          fi
+
+          if [[ "$CONFIG_FILE" == "config.json" ]]; then
+            EDGE_VERSION=$(jq -r '.version' "$EDGE_CONFIG")
+          else
+            EDGE_VERSION=$(yq e '.version' "$EDGE_CONFIG")
+          fi
+
+          if [[ "$EDGE_VERSION" != "$VERSION" ]]; then
+            echo "::error::Requested version ${VERSION} does not match the current edge version (${EDGE_VERSION}). Only the version currently on edge can be promoted."
+            exit 1
+          fi
+
+          # Extract the "## <version>" section from the edge changelog
+          SECTION=$(awk -v ver="## ${VERSION}" '
+            $0 == ver { found=1; next }
+            found && /^## / { exit }
+            found { print }
+          ' "$EDGE_CHANGELOG")
+
+          if [[ -z "$SECTION" ]]; then
+            echo "::error::No '## ${VERSION}' entry found in ${EDGE_CHANGELOG}."
+            exit 1
+          fi
+
+          {
+            echo "changelog_entry<<EOF_ENTRY"
+            printf '%s\n' "$SECTION"
+            echo "EOF_ENTRY"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Ensure prod folder exists
+        env:
+          EDGE_FOLDER: ${{ steps.meta.outputs.edge_folder }}
+          PROD_FOLDER: ${{ steps.meta.outputs.prod_folder }}
+          ADDON: ${{ inputs.addon }}
+        run: |
+          if [[ ! -d "$PROD_FOLDER" ]]; then
+            echo "Creating new add-on folder: ${PROD_FOLDER}"
+            mkdir -p "$PROD_FOLDER"
+            for f in config.json config.yaml Dockerfile icon.png logo.png README.md; do
+              [[ -f "${EDGE_FOLDER}/${f}" ]] && cp "${EDGE_FOLDER}/${f}" "${PROD_FOLDER}/${f}"
+            done
+            echo "# Changelog" > "${PROD_FOLDER}/CHANGELOG.md"
+
+            if [[ -f "${PROD_FOLDER}/config.json" ]]; then
+              jq --arg slug "$ADDON" --arg name "$ADDON" \
+                '.slug = $slug | .name = $name' \
+                "${PROD_FOLDER}/config.json" > "${PROD_FOLDER}/config.json.tmp"
+              mv "${PROD_FOLDER}/config.json.tmp" "${PROD_FOLDER}/config.json"
+            fi
+            if [[ -f "${PROD_FOLDER}/config.yaml" ]]; then
+              SLUG="$ADDON" NAME="$ADDON" \
+                yq e '.slug = env(SLUG) | .name = env(NAME)' -i "${PROD_FOLDER}/config.yaml"
+            fi
+            # Prod pulls from the mutable :latest tag rather than a channel-named one
+            [[ -f "${PROD_FOLDER}/Dockerfile" ]] && \
+              sed -i "s#:edge#:latest#; s#:dev#:latest#" "${PROD_FOLDER}/Dockerfile"
+          fi
+
+      - name: Update version and changelog
+        env:
+          PROD_FOLDER: ${{ steps.meta.outputs.prod_folder }}
+          CONFIG_FILE: ${{ steps.meta.outputs.config_file }}
+          VERSION: ${{ inputs.version }}
+          CHANGELOG_ENTRY: ${{ steps.entry.outputs.changelog_entry }}
+        run: |
+          CONFIG="${PROD_FOLDER}/${CONFIG_FILE}"
+          if [[ "$CONFIG_FILE" == "config.json" ]]; then
+            jq --arg v "$VERSION" '.version = $v' "$CONFIG" > "${CONFIG}.tmp"
+            mv "${CONFIG}.tmp" "$CONFIG"
+          else
+            VERSION="$VERSION" yq e '.version = env(VERSION)' -i "$CONFIG"
+          fi
+
+          CHANGELOG="${PROD_FOLDER}/CHANGELOG.md"
+          NEW_ENTRY="## ${VERSION}
+
+          ${CHANGELOG_ENTRY}
+
+          "
+          HEADER=$(head -1 "$CHANGELOG")
+          REST=$(tail -n +2 "$CHANGELOG")
+          printf '%s\n\n%s\n%s' "$HEADER" "$NEW_ENTRY" "$REST" > "$CHANGELOG"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_PROMOTE_PAT }}
+
+      - name: Move :latest to the promoted version
+        env:
+          IMAGE: ${{ steps.meta.outputs.image }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          docker buildx imagetools create \
+            --tag "${IMAGE}:latest" \
+            "${IMAGE}:${VERSION}"
+
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PROD_FOLDER: ${{ steps.meta.outputs.prod_folder }}
+          VERSION: ${{ inputs.version }}
+          ADDON: ${{ inputs.addon }}
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="promote/${PROD_FOLDER}-${VERSION}"
+          git checkout -b "$BRANCH"
+          git add "${PROD_FOLDER}/"
+
+          if git diff --cached --quiet; then
+            echo "No changes detected in ${PROD_FOLDER}/ — nothing to promote"
+            exit 0
+          fi
+
+          git commit -m "chore(${PROD_FOLDER}): promote ${ADDON} ${VERSION} to prod"
+          git push origin "$BRANCH"
+
+          BASE_BRANCH=$(gh repo view --json defaultBranchRef --jq '.defaultBranchRef.name')
+
+          gh pr create \
+            --head "$BRANCH" \
+            --base "${BASE_BRANCH}" \
+            --title "chore(${PROD_FOLDER}): promote ${ADDON} ${VERSION} to prod" \
+            --body "Promotes ${ADDON} \`${VERSION}\` from edge to prod. The image is reused as-is (no rebuild); only \`:latest\` was retagged in GHCR."
