@@ -2,10 +2,13 @@
 #
 # This does NOT rebuild anything — prod runs the exact same image edge
 # users already validated. It:
-#   1. reuses the version + changelog entry already present in
-#      <addon>-edge/CHANGELOG.md,
-#   2. copies them into <addon>/ (the prod folder), creating it from the
-#      edge template on first promotion,
+#   1. copies <addon>-edge/CHANGELOG.md into <addon>/CHANGELOG.md as-is
+#      (full history, not just the promoted version — prod may be a few
+#      versions behind edge, and the full changelog is more useful than a
+#      single extracted section), with a footer linking to the upstream
+#      releases page,
+#   2. bumps the version in <addon>/config.{json,yaml}, creating the prod
+#      folder from the edge template on first promotion,
 #   3. moves the mutable :latest tag in GHCR to point at that same image
 #      digest (via `docker buildx imagetools create`, no rebuild).
 #
@@ -60,25 +63,26 @@ jobs:
           if [[ "$ADDON" == "Lupusec2Mqtt" ]]; then
             CONFIG_FILE="config.json"
             IMAGE="ghcr.io/cyberdns/lupusec2mqtt"
+            SOURCE_REPO="CyberDNS/Lupusec2Mqtt"
           else
             CONFIG_FILE="config.yaml"
             IMAGE="ghcr.io/cyberdns/energy-assistant"
+            SOURCE_REPO="CyberDNS/energy-assistant"
           fi
 
           echo "edge_folder=${EDGE_FOLDER}"   >> "$GITHUB_OUTPUT"
           echo "prod_folder=${PROD_FOLDER}"   >> "$GITHUB_OUTPUT"
           echo "config_file=${CONFIG_FILE}"   >> "$GITHUB_OUTPUT"
           echo "image=${IMAGE}"               >> "$GITHUB_OUTPUT"
+          echo "source_repo=${SOURCE_REPO}"   >> "$GITHUB_OUTPUT"
 
-      - name: Verify version exists on edge
-        id: entry
+      - name: Verify version matches edge
         env:
           EDGE_FOLDER: ${{ steps.meta.outputs.edge_folder }}
           CONFIG_FILE: ${{ steps.meta.outputs.config_file }}
           VERSION: ${{ inputs.version }}
         run: |
           EDGE_CONFIG="${EDGE_FOLDER}/${CONFIG_FILE}"
-          EDGE_CHANGELOG="${EDGE_FOLDER}/CHANGELOG.md"
 
           if [[ ! -f "$EDGE_CONFIG" ]]; then
             echo "::error::${EDGE_CONFIG} does not exist — nothing has ever been released to edge for this add-on."
@@ -95,24 +99,6 @@ jobs:
             echo "::error::Requested version ${VERSION} does not match the current edge version (${EDGE_VERSION}). Only the version currently on edge can be promoted."
             exit 1
           fi
-
-          # Extract the "## <version>" section from the edge changelog
-          SECTION=$(awk -v ver="## ${VERSION}" '
-            $0 == ver { found=1; next }
-            found && /^## / { exit }
-            found { print }
-          ' "$EDGE_CHANGELOG")
-
-          if [[ -z "$SECTION" ]]; then
-            echo "::error::No '## ${VERSION}' entry found in ${EDGE_CHANGELOG}."
-            exit 1
-          fi
-
-          {
-            echo "changelog_entry<<EOF_ENTRY"
-            printf '%s\n' "$SECTION"
-            echo "EOF_ENTRY"
-          } >> "$GITHUB_OUTPUT"
 
       - name: Ensure prod folder exists
         env:
@@ -145,10 +131,11 @@ jobs:
 
       - name: Update version and changelog
         env:
+          EDGE_FOLDER: ${{ steps.meta.outputs.edge_folder }}
           PROD_FOLDER: ${{ steps.meta.outputs.prod_folder }}
           CONFIG_FILE: ${{ steps.meta.outputs.config_file }}
+          SOURCE_REPO: ${{ steps.meta.outputs.source_repo }}
           VERSION: ${{ inputs.version }}
-          CHANGELOG_ENTRY: ${{ steps.entry.outputs.changelog_entry }}
         run: |
           CONFIG="${PROD_FOLDER}/${CONFIG_FILE}"
           if [[ "$CONFIG_FILE" == "config.json" ]]; then
@@ -158,15 +145,17 @@ jobs:
             VERSION="$VERSION" yq e '.version = env(VERSION)' -i "$CONFIG"
           fi
 
-          CHANGELOG="${PROD_FOLDER}/CHANGELOG.md"
-          NEW_ENTRY="## ${VERSION}
-
-          ${CHANGELOG_ENTRY}
-
-          "
-          HEADER=$(head -1 "$CHANGELOG")
-          REST=$(tail -n +2 "$CHANGELOG")
-          printf '%s\n\n%s\n%s' "$HEADER" "$NEW_ENTRY" "$REST" > "$CHANGELOG"
+          # Copy edge's changelog as-is rather than extracting a single
+          # version's section — prod may lag a few versions behind edge,
+          # and full history is more useful than one isolated entry. A
+          # footer points back to the source repo for anything not shown.
+          cp "${EDGE_FOLDER}/CHANGELOG.md" "${PROD_FOLDER}/CHANGELOG.md"
+          {
+            echo ""
+            echo "---"
+            echo ""
+            echo "**Other releases:** see the [release history](https://github.com/${SOURCE_REPO}/releases) for versions on other channels."
+          } >> "${PROD_FOLDER}/CHANGELOG.md"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
