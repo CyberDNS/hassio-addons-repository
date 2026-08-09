@@ -1,6 +1,6 @@
 {
   "name": "Lupusec2Mqtt Development",
-  "version": "4.0.0",
+  "version": "0.0.0-dev.a28c64d",
   "slug": "Lupusec2Mqtt-dev",
   "description": "Connect your Lupusec Alarm system to HomeAssistant by an MQTT integration",
   "startup": "application",
