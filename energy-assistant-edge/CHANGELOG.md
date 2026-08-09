@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.1 (2026-08-09)
+
+## What's Changed
+* fix(docker-publish): strip the leading v from the immutable image tag by @CyberDNS in https://github.com/CyberDNS/energy-assistant/pull/32
+
+
+**Full Changelog**: https://github.com/CyberDNS/energy-assistant/compare/v0.1.0...v0.1.1
+
+
+
 ## 0.1.0 (2026-08-09)
 
 ## What's Changed
