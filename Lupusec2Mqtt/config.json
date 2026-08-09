@@ -36,5 +36,5 @@
     "MotionSensor:DetectionDuration": "int(1,)",
     "PollFrequencyInSeconds": "int(1,)"
   },
-  "image": "cyberdns/lupusec2mqtt_hassaddon_{arch}"
+  "image": "ghcr.io/cyberdns/lupusec2mqtt"
 }

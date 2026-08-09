@@ -1,0 +1,20 @@
+name: Energy Assistant (edge)
+version: 0.0.0
+slug: energy-assistant-edge
+description: Open-source, vendor-neutral energy management platform for homeowners (edge channel — validated pre-release builds)
+url: https://github.com/CyberDNS/energy-assistant
+startup: application
+init: false
+arch:
+  - aarch64
+  - amd64
+boot: auto
+map:
+  - type: addon_config
+    read_only: false
+  - type: data
+    read_only: false
+ingress: true
+ingress_port: 8088
+options: {}
+schema: {}
