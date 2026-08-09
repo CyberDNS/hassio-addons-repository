@@ -1,5 +1,5 @@
 name: Energy Assistant (edge)
-version: 0.0.0
+version: 0.1.0
 slug: energy-assistant-edge
 description: Open-source, vendor-neutral energy management platform for homeowners (edge channel — validated pre-release builds)
 url: https://github.com/CyberDNS/energy-assistant
