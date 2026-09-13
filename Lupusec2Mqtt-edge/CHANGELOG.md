@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.1.3 (2026-09-13)
+
+## What's Changed
+* fix: enhance unauthorized retry policy to handle HTML login responses by @CyberDNS in https://github.com/CyberDNS/Lupusec2Mqtt/pull/108
+
+
+**Full Changelog**: https://github.com/CyberDNS/Lupusec2Mqtt/compare/v4.1.2...v4.1.3
+
+
+
 ## 4.1.2 (2026-08-09)
 
 ## What's Changed
