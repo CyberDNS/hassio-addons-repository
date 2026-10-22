@@ -1,5 +1,42 @@
 # Changelog
 
+## 4.1.3 (2026-09-13)
+
+## What's Changed
+* fix: enhance unauthorized retry policy to handle HTML login responses by @CyberDNS in https://github.com/CyberDNS/Lupusec2Mqtt/pull/108
+
+
+**Full Changelog**: https://github.com/CyberDNS/Lupusec2Mqtt/compare/v4.1.2...v4.1.3
+
+
+
+## 4.1.2 (2026-08-09)
+
+## What's Changed
+* Add device wrapping for switches, lights, and switch sensors by @CyberDNS with @Copilot in https://github.com/CyberDNS/Lupusec2Mqtt/pull/101
+_If you are migrating from a previous version, delete the discovery config from MQTT (e.g. using MQTT Explorer or another tool of your choice) and restart the add-on._
+
+**Full Changelog**: https://github.com/CyberDNS/Lupusec2Mqtt/compare/v4.1.1...v4.1.2
+
+
+
+## 4.1.1 (2026-08-09)
+
+## What's Changed
+* fix(lupusec): retry request when token re-authentication itself hits a 401 by @CyberDNS in https://github.com/CyberDNS/Lupusec2Mqtt/pull/106
+
+**Full Changelog**: https://github.com/CyberDNS/Lupusec2Mqtt/compare/v2.0.0...v4.1.1
+
+
+
+## 4.1.0
+
+- fix: smoke detector state handling fixed
+
+## 4.0.0
+
+- feat: device "Lupusec" is now wrapping the entities. If you are migrating from a previous version, delete the discovery config from MQTT (e.g. using MQTT Explorer or another tool of your choice) and restart the add-on.
+
 ## 3.5.0
 
 - feat: added thermostates (Kudos [@trashar](https://github.com/trashar))
@@ -126,3 +163,6 @@
 ## 1.0.0
 
 - Initial
+---
+
+**Other releases:** see the [release history](https://github.com/CyberDNS/Lupusec2Mqtt/releases) for versions on other channels.
