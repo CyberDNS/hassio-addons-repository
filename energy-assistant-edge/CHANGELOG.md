@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.1.2 (2026-11-01)
+
+## Fixes
+
+- **No more crash when ioBroker is briefly unreachable.** Previously, if ioBroker went away while Energy Assistant was running (for example during a "update all containers" on Unraid), a failed command to the inverter could stop the whole application. Control and planning now log a warning and retry on the next cycle.
+- **EV charging:** more reliable catch-up of missed deadlines (only if the car was plugged in when the deadline passed, no phantom resumed charging, safety margin on the feasibility check) and earlier slots are preferred among equally priced ones in phase 1.
+- **Planner:** correct handling of slots overlapping the forced EV window, no grid import in PV-labelled EV slots, and only the remaining part of the first slot is planned.
+- **Database size:** old history is now purged and space reclaimed in the background in batches, so the database no longer grows without limit and startup is not blocked.
+
+## Improvements
+
+- The planner now logs the achieved MIP gap and whether the time limit was hit.
+- Extra diagnostic logging for EV charging decisions.
+
+
+
+
 ## 0.1.1 (2026-08-09)
 
 ## What's Changed
