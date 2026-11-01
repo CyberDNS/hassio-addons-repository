@@ -1,5 +1,5 @@
 name: Energy Assistant (dev)
-version: 0.1.2-dev
+version: 0.1.3-dev
 slug: energy-assistant-dev
 description: Open-source, vendor-neutral energy management platform for homeowners (dev channel — nightly builds from main branch)
 url: https://github.com/CyberDNS/energy-assistant
