@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.3 (2026-11-01)
+
+## New
+
+- **ioBroker authentication.** If you enable authentication in the ioBroker simple-api adapter, you can now give Energy Assistant the credentials. Add `username` and `password` to the `iobroker:` section of your config (store them in `secrets.yaml` and reference them with `!secret`). They are sent as HTTP Basic auth. Without credentials, nothing changes.
+- Setting only one of username/password, or combining them with `api_token`, is rejected with a clear error instead of silently picking one.
+
+## Fixes
+
+- The `control_storage.py` helper script now understands `!secret` values in the config.
+
+
+
+
 ## 0.1.2 (2026-11-01)
 
 ## Fixes
