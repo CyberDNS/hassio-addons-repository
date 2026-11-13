@@ -1,5 +1,25 @@
 # Changelog
 
+## 4.2.0 (2026-11-13)
+
+## ✨ Sensors and switches as their own devices in Home Assistant
+
+Every Lupusec sensor and switch now shows up in Home Assistant as its **own device**, connected via the **Lupusec** alarm central (MQTT sub-devices / `via_device`).
+
+- Entities of the same physical device are grouped, e.g. a power switch with its **Power** and **Energy** sensors, or a climate sensor with **Temperature** and **Humidity**.
+- The alarm areas and alarm status sensors stay on the **Lupusec** central device, whose model now shows the supported centrals (XT1 Plus / XT2 / XT2 Plus).
+- Each device shows its type as model (e.g. *Motion Detector*, *Door/Window Contact*, *Power Switch Meter*).
+- Entity names no longer repeat the device name (e.g. *Switch Aquarium Power* instead of *Lupusec Switch Aquarium - Power*).
+
+### Upgrade notes
+- Existing entities and their entity IDs are kept — they simply move from the single "Lupusec" device to their new devices.
+- If you have **device-based** automations (device triggers/conditions/actions) that reference the old "Lupusec" device for a sensor or switch, re-select the new device for those.
+
+**Full Changelog**: https://github.com/CyberDNS/Lupusec2Mqtt/compare/v4.1.3...v4.2.0
+
+
+
+
 ## 4.1.3 (2026-09-13)
 
 ## What's Changed
