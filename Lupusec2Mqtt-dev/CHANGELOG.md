@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.0-dev.bf17aa2 (2026-11-13)
+
+Dev snapshot from `master` (commit [bf17aa2](https://github.com/CyberDNS/Lupusec2Mqtt/commit/bf17aa2fc42e889a61fd0884941a85699bf568b5)).
+
+
+
 ## 0.0.0-dev.965e9d0 (2026-09-13)
 
 Dev snapshot from `master` (commit [965e9d0](https://github.com/CyberDNS/Lupusec2Mqtt/commit/965e9d049ada3075242fd4f3c8024fccf53e3159)).
