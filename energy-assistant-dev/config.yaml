@@ -16,5 +16,12 @@ map:
     read_only: false
 ingress: true
 ingress_port: 8088
+# Optional direct port for read-only REST/MCP access from outside ingress.
+# Unmapped by default; set a host port in the add-on's Network settings and
+# set server.api_token in config.yaml first (see the Energy Assistant README).
+ports:
+  8088/tcp: null
+ports_description:
+  8088/tcp: "Read-only REST API + MCP (needs server.api_token; leave empty to disable)"
 options: {}
 schema: {}
