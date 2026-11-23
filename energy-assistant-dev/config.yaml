@@ -16,6 +16,10 @@ map:
     read_only: false
 ingress: true
 ingress_port: 8088
+# Sidebar entry: the plain name, and the Material Design icon closest to the
+# logo (Home Assistant takes no custom image here).
+panel_title: Energy Assistant
+panel_icon: mdi:home-analytics
 # Optional direct port for read-only REST/MCP access from outside ingress.
 # Unmapped by default; set a host port in the add-on's Network settings and
 # set server.api_token in config.yaml first (see the Energy Assistant README).
