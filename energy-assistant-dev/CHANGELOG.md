@@ -2,6 +2,12 @@
 
 ## 0.1.3-dev (2026-11-26)
 
+Dev snapshot from `main` (commit [a57fa63](https://github.com/CyberDNS/energy-assistant/commit/a57fa6376839cb07ea9cd7e4fb84b0b4f16455d6)).
+
+
+
+## 0.1.3-dev (2026-11-26)
+
 Dev snapshot from `main` (commit [00e3f13](https://github.com/CyberDNS/energy-assistant/commit/00e3f13fbc695b223b6f43e8b800ea638a3b999a)).
 
 
