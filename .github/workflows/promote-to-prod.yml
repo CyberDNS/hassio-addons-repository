@@ -19,7 +19,7 @@
 #   GHCR_PROMOTE_PAT — classic PAT with `write:packages` (and `read:packages`)
 #                      scope, owned by an account with push access to the
 #                      ghcr.io/cyberdns/lupusec2mqtt and
-#                      ghcr.io/cyberdns/energy-assistant packages.
+#                      ghcr.io/cyberdns/nornwatt packages.
 
 name: Promote to prod
 
@@ -32,7 +32,7 @@ on:
         type: choice
         options:
           - Lupusec2Mqtt
-          - energy-assistant
+          - nornwatt
       version:
         description: "Version to promote (must already exist on the edge channel, e.g. 1.3.1)"
         required: true
@@ -66,8 +66,8 @@ jobs:
             SOURCE_REPO="CyberDNS/Lupusec2Mqtt"
           else
             CONFIG_FILE="config.yaml"
-            IMAGE="ghcr.io/cyberdns/energy-assistant"
-            SOURCE_REPO="CyberDNS/energy-assistant"
+            IMAGE="ghcr.io/cyberdns/nornwatt"
+            SOURCE_REPO="CyberDNS/nornwatt"
           fi
 
           echo "edge_folder=${EDGE_FOLDER}"   >> "$GITHUB_OUTPUT"

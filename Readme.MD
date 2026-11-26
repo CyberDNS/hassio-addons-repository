@@ -7,4 +7,4 @@ This repository can be configured under HA addon settings page.
 | Addon                     | Github project page                                                                                       |
 | ------------------------- | --------------------------------------------------------------------------------------------------------- |
 | Lupusec2Mqtt              | [https://github.com/CyberDNS/Lupusec2Mqtt](https://github.com/CyberDNS/Lupusec2Mqtt)                    |
-| Energy Assistant (dev)    | [https://github.com/CyberDNS/energy-assistant](https://github.com/CyberDNS/energy-assistant)             |
+| Nornwatt (dev)    | [https://github.com/CyberDNS/nornwatt](https://github.com/CyberDNS/nornwatt)             |

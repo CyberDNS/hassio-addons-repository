@@ -1,8 +1,8 @@
-name: Energy Assistant
+name: Nornwatt
 version: 0.1.1
-slug: energy-assistant
+slug: nornwatt
 description: Open-source, vendor-neutral energy management platform for homeowners
-url: https://github.com/CyberDNS/energy-assistant
+url: https://github.com/CyberDNS/nornwatt
 startup: application
 init: false
 arch:
