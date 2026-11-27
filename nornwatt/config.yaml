@@ -16,5 +16,8 @@ map:
     read_only: false
 ingress: true
 ingress_port: 8088
+# Connects to this Home Assistant on its own (Supervisor proxy + SUPERVISOR_TOKEN),
+# so no long-lived token is needed. backends.homeassistant in config.yaml overrides it.
+homeassistant_api: true
 options: {}
 schema: {}

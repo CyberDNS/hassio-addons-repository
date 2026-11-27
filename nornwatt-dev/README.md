@@ -21,9 +21,9 @@ The dev channel tracks the `main` branch of [CyberDNS/nornwatt](https://github.c
 1. Add this repository as a custom add-on repository in the Home Assistant UI:  
    **Supervisor → Add-on Store → ⋮ → Repositories → `https://github.com/CyberDNS/hassio-addons-repository`**
 2. Install **Nornwatt (dev)**.
-3. Create the configuration directory and file at `/config/nornwatt/config.yaml` inside your Home Assistant configuration directory.  
-   Use the [config.yaml.example](https://github.com/CyberDNS/nornwatt/blob/main/config.yaml.example) and [secrets.yaml.example](https://github.com/CyberDNS/nornwatt/blob/main/secrets.yaml.example) from the source repository as starting points.
-4. Start the add-on and open the web UI via **Ingress** (port 8088).
+3. Start the add-on and open it from the sidebar (**Nornwatt**, via Ingress).
+   No `config.yaml` and no access token are needed: the add-on connects to this Home Assistant
+   by itself and opens on a start page. Add your devices and tariff under **Settings**.
 
 ## Moving from Energy Assistant
 
@@ -43,7 +43,7 @@ Nornwatt is the new name of Energy Assistant. Home Assistant treats it as a new 
 
 ## Configuration
 
-All configuration is done through `/config/nornwatt/config.yaml` (and an optional `secrets.yaml` in the same directory). See the [Nornwatt documentation](https://github.com/CyberDNS/nornwatt/tree/main/docs) for the full configuration reference.
+Everything can be configured in the web UI (**Settings**). It is stored in `config.yaml` (and `secrets.yaml`) in the add-on's configuration folder (`/addon_configs/<repository>_nornwatt-dev/`), which you can also edit by hand. A mistake in the file never stops the add-on: it starts anyway and lists the problems in the web UI, where they can be fixed. See the [Nornwatt documentation](https://github.com/CyberDNS/nornwatt/tree/main/docs) for the full configuration reference.
 
 ## Release channels
 
