@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.3-dev (2026-11-27)
+
+Dev snapshot from `main` (commit [1f6027e](https://github.com/CyberDNS/nornwatt/commit/1f6027ee753c283f92c6ecaa20879f99818a0a84)).
+
+
+
 ## 0.1.3-dev (2026-11-26)
 
 Dev snapshot from `main` (commit [7f9bec7](https://github.com/CyberDNS/nornwatt/commit/7f9bec704a8fd2c64e5ce1cd775e62f011ae47f4)).
