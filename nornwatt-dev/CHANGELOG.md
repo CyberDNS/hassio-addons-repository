@@ -2,6 +2,12 @@
 
 ## 0.1.3-dev (2026-11-27)
 
+Dev snapshot from `main` (commit [12baebc](https://github.com/CyberDNS/nornwatt/commit/12baebc237b17a20224474c4f586ff7a0b89a06a)).
+
+
+
+## 0.1.3-dev (2026-11-27)
+
 Dev snapshot from `main` (commit [1f6027e](https://github.com/CyberDNS/nornwatt/commit/1f6027ee753c283f92c6ecaa20879f99818a0a84)).
 
 
