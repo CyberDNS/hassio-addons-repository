@@ -217,7 +217,7 @@ jobs:
   #   DOCS_PAT — a fine-grained personal access token for CyberDNS/nornwatt.com
   #              with "Contents: read and write" and "Pull requests: read and write".
   promote-docs:
-    name: Promote the documentation of ${{ inputs.addon }} ${{ inputs.version }} to stable
+    name: Promote the documentation to stable (Nornwatt)
     if: inputs.addon == 'nornwatt'
     needs: promote
     runs-on: ubuntu-latest
