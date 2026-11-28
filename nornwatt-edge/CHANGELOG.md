@@ -1,5 +1,68 @@
 # Changelog
 
+## 0.2.0 (2026-11-28)
+
+Energy Assistant is now **Nornwatt**, and this release is the largest so far: a full web UI with configuration in the browser, a new device model, control you switch on per device, and savings measured against a simulated house without planning.
+
+## Before you update
+
+- **New name, new add-on.** Home Assistant treats Nornwatt as a new add-on, so the configuration and history of Energy Assistant do not move by themselves. See [Moving from Energy Assistant](https://github.com/CyberDNS/nornwatt/blob/main/docs/installation.md#moving-from-energy-assistant).
+- **New configuration format.** Everything in the house is now one entry of a flat `devices:` list with a `category`; the `assets:` and `topology:` sections are gone. Start from [`config.yaml.example`](https://github.com/CyberDNS/nornwatt/blob/main/config.yaml.example), or add your devices in the new Settings pages.
+- **New entity names in Home Assistant**: `…nornwatt…`, for example `sensor.nornwatt_electricity_price`. Update automations and dashboards.
+
+## New
+
+**Configure in the browser**
+- Settings pages for devices, tariffs, forecasts, connections and secrets. Changes are checked and applied without a restart; your comments in `config.yaml` are kept.
+- Starts without a configuration file. As an add-on it connects to Home Assistant by itself.
+- A mistake in the configuration no longer stops Nornwatt: it starts, lists the problems and lets you fix them in the UI.
+- Presets for common Home Assistant integrations (openWB, Wallbox, go-e, Huawei LUNA2000, SolarEdge, thermostats, hot-water tanks).
+
+**New web UI**
+- Home with the live power flow, today on one timeline and what the plan does next. A page per device with its plan, history, savings and what was learned.
+- The plan explains itself: a reason per device and slot.
+- Full-screen mode inside Home Assistant, light and dark theme.
+
+**Control and safety**
+- New devices start in observe mode: Nornwatt plans them and shows what it would do and save, and sends nothing until you switch control on.
+- When Nornwatt stops, loses its plan or its control loop hangs, every device is released back to its own operation.
+- A limit for the grid connection, and power charges (Luxembourg's reference power, Flanders' capacity tariff) in the plan.
+
+**Devices**
+- Any battery, charger, thermostat, switch, car or sensor that Home Assistant has, by configuration.
+- Directly, without Home Assistant in between: SMA Sunny Boy Storage (Modbus), Zendure (cloud or local MQTT), openWB (MQTT), Tasmota reading heads and plugs, Tibber Pulse on the local network.
+- Cars are devices of their own with charging sessions, a charger selector and guest cars.
+- Thermal loads (cooler, heater, hot-water tank) kept between two thresholds and run at the best time.
+
+**Tariffs and forecasts**
+- ENTSO-E day-ahead prices with your own fees, taxes and markup: any dynamic tariff in Europe.
+- Time-of-use tariffs by time of day, weekday and season, also on top of another tariff.
+- A PV forecast learned from your own production, and Forecast.Solar without a detour.
+
+**Savings and learning**
+- Savings are measured against a simulated house without planning, on the same consumption, solar production and prices, with a panel per battery, car and thermal load.
+- Battery wear counts as a cost.
+- Learned: consumption per consumer and the household baseline, thermal models, and each battery's efficiency and self-consumption.
+- A device's past data can be imported from Home Assistant, so learning does not start from zero.
+
+**Access from outside**
+- Read-only REST API and MCP endpoint behind a token.
+
+## Fixes
+
+- Batteries stay on the plan, and planned grid charging is delivered in full.
+- Planning runs are aligned to slot boundaries.
+- A failing device no longer stops the control of the others.
+- SMA: discharging reaches its setpoint despite the inverter's own draw.
+- Prices beyond the published ones are estimated from the latest complete day, damped, so a guessed peak no longer makes the plan hold energy for a day.
+
+## License
+
+Nornwatt is now licensed under the Apache License 2.0.
+
+
+
+
 ## 0.1.3 (2026-11-01)
 
 ## New
