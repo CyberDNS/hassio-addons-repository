@@ -20,6 +20,7 @@
 #                      scope, owned by an account with push access to the
 #                      ghcr.io/cyberdns/lupusec2mqtt and
 #                      ghcr.io/cyberdns/nornwatt packages.
+#   DOCS_PAT         — for the documentation of Nornwatt, see the job promote-docs below.
 
 name: Promote to prod
 
@@ -205,3 +206,53 @@ jobs:
             --base "${BASE_BRANCH}" \
             --title "chore(${PROD_FOLDER}): promote ${ADDON} ${VERSION} to prod" \
             --body "Promotes ${ADDON} \`${VERSION}\` from edge to prod. The image is reused as-is (no rebuild); only \`:latest\` was retagged in GHCR."
+
+  # Nornwatt's documentation (CyberDNS/nornwatt.com) has one branch per channel.
+  # When a release is published, the documentation of that version is tagged
+  # (v<version>) and goes to its `edge` branch. Promoting the version to prod
+  # opens the pull request that brings that tag to `stable`, which is
+  # nornwatt.com.
+  #
+  # Required secret:
+  #   DOCS_PAT — a fine-grained personal access token for CyberDNS/nornwatt.com
+  #              with "Contents: read and write" and "Pull requests: read and write".
+  promote-docs:
+    name: Promote the documentation of ${{ inputs.addon }} ${{ inputs.version }} to stable
+    if: inputs.addon == 'nornwatt'
+    needs: promote
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout the documentation
+        uses: actions/checkout@v4
+        with:
+          repository: CyberDNS/nornwatt.com
+          token: ${{ secrets.DOCS_PAT }}
+          ref: stable
+          fetch-depth: 0
+
+      - name: Open the pull request to stable
+        env:
+          GH_TOKEN: ${{ secrets.DOCS_PAT }}
+          VERSION: ${{ inputs.version }}
+        run: |
+          TAG="v${VERSION}"
+          if ! git rev-parse --verify --quiet "refs/tags/${TAG}" >/dev/null; then
+            echo "::error::CyberDNS/nornwatt.com has no tag ${TAG}: the documentation of this version was never promoted to edge."
+            exit 1
+          fi
+
+          BRANCH="promote/stable-${TAG}"
+          git checkout -B "$BRANCH" "refs/tags/${TAG}"
+          git push --force origin "$BRANCH"
+
+          if [[ -z "$(git rev-list origin/stable.."$BRANCH" | head -1)" ]]; then
+            echo "stable already has the documentation of ${TAG}: nothing to promote."
+            exit 0
+          fi
+          if [[ -z "$(gh pr list --repo CyberDNS/nornwatt.com --head "$BRANCH" --state open --json number --jq '.[0].number')" ]]; then
+            gh pr create --repo CyberDNS/nornwatt.com --head "$BRANCH" --base stable \
+              --title "docs: promote to stable (${TAG})" \
+              --body "Nornwatt \`${VERSION}\` was promoted to prod. This brings the documentation of that version to nornwatt.com. Merge with a merge commit, not a squash, so later promotions stay conflict-free."
+          fi
